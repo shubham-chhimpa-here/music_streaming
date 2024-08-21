@@ -6,7 +6,7 @@ import './App.css'
 function App() {
   const [count, setCount] = useState()
   const getData = () => {
-    const url = `http://localhost:8080/audios`
+    const url = `/audios`
     fetch(url)
     .then(res=> res.json())
     .then(res => {
