@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import AudioPlayer from './components/AudioPlayer'
 
 function App() {
   const [count, setCount] = useState()
@@ -16,21 +17,12 @@ function App() {
 
   useEffect(() => {
     getData()
+   
   }, [])
   return (
     <>
 
-    {
-    count?.map((item, index) => {
-      console.log(item.url)
-      return <div>
-      <audio controls>
-        <source src={item.url} type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-    </div>
-
-    })}
+   <AudioPlayer songs = {count}/>
 
     
      
