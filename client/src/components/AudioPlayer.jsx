@@ -13,6 +13,7 @@ const AudioPlayer = ({ url }) => {
   return (
     <div>
       <audio src={url} controls loop={loop} 
+      autoPlay
       ref={audRef}
       style={{
         width:"600px"
