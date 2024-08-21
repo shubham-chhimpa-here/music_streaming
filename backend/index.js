@@ -8,14 +8,14 @@ const cloudinary = require('cloudinary').v2;
 const path = require('path');
 const cors = require('cors')
 
-const __dirname=path.resolve();
+const dirname=path.resolve();
 const PORT = 8080;
 require('dotenv').config() 
 
 
-app.use(express.static(path.join(__dirname,"/client/dist")))
+app.use(express.static(path.join(dirname,"/client/dist")))
 app.use(cors())
-console.log(process.env.hello)
+
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -63,7 +63,7 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
 
 app.get("*",(req,res)=>
     {
-        res.sendFile(path.join(__dirname,"client","dist","index.html"))
+        res.sendFile(path.join(dirname,"client","dist","index.html"))
     })
 
 app.listen(PORT, () => {
