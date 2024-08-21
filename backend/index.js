@@ -49,6 +49,8 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
       folder: 'audio_files',
     });
 
+    console.log(result)
+
     // Delete the file after uploading to Cloudinary
     fs.unlinkSync(path);
 

@@ -6,26 +6,36 @@ import AudioPlayer from './components/AudioPlayer'
 
 function App() {
   const [count, setCount] = useState()
+  const [url, setUrl] = useState(null)
   const getData = () => {
     const url = `/audios`
     fetch(url)
-    .then(res=> res.json())
-    .then(res => {
-      setCount(res.x)
-    })
+      .then(res => res.json())
+      .then(res => {
+        setCount(res.x)
+      })
   }
 
   useEffect(() => {
     getData()
-   
   }, [])
   return (
     <>
 
-   <AudioPlayer songs = {count}/>
+    {
+      url && <AudioPlayer url={url} />
+    }
 
-    
-     
+      {
+        count?.map((item, index) => {
+          return <div key={index}>
+            <div onClick={() => setUrl(item.url)}> {item._id}</div>
+          </div>
+        })
+      }
+
+
+
     </>
   )
 }

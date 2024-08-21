@@ -1,36 +1,25 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
-const AudioPlayer = ({songs}) => {
-  const audioRefs = useRef([]);
+const AudioPlayer = ({ url }) => {
+    const [loop, setLoop] = useState(false);
+    const [volume , setVolume] = useState(1)
+    const audRef = useRef(null)
 
-  const audioSources = songs;
-  
-
-  const handlePlay = (index) => {
-    audioRefs.current.forEach((audio, i) => {
-      if (i !== index && audio) {
-        audio.pause();
-      }
-    });
-  };
-
+    const handleChange = (e) => {
+        const x = (e.target.value)/ 100;
+        setVolume(x)
+        audRef.current.volume = x;
+    }
   return (
-    <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1rem'
-    }}>
-      {audioSources?.map((audio, index) => (
-        <audio
-          key={audio._id}
-          ref={(el) => (audioRefs.current[index] = el)}
-          controls
-          onPlay={() => handlePlay(index)}
-        >
-          <source src={audio.url} type="audio/mpeg" />
-          Your browser does not support the audio tag.
-        </audio>
-      ))}
+    <div>
+      <audio src={url} controls loop={loop} 
+      ref={audRef}
+      style={{
+        width:"600px"
+      }} ></audio>
+      <br />
+      <button onClick={() => {setLoop(value => !value)}}>{loop ? "loop" : "play loop"}</button>
+      <input type="range"  onChange={handleChange} min={0} max={100}  />
     </div>
   );
 };
