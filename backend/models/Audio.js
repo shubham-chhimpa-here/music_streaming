@@ -6,6 +6,13 @@ const AudioSchema = new Schema({
     type: String,
     // required: true,
   },
+  artist : {
+    type: String,
+
+  },
+  language: {
+    type: String,
+  },
   url: {
     type: String,
     required: true,

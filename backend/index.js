@@ -12,8 +12,8 @@ const dirname=path.resolve();
 const PORT = 8080;
 require('dotenv').config() 
 
-
-app.use(express.static(path.join(dirname,"/client/dist")))
+app.use(express.json())
+// app.use(express.static(path.join(dirname,"/client/dist")))
 app.use(cors())
 
 
@@ -36,14 +36,20 @@ app.get('/audios', async (req, res) => {
         res.send({msg: 'something went wrong'})
     }
 
-})
+}) 
+
 
 const upload = multer({ dest: 'uploads/' });
 
 app.post('/upload', upload.single('audio'), async (req, res) => {
-  const path = req.file.path; 
 
+  
+  
   try {
+    console.log('body', req.body)
+    console.log("file", req.file)
+    const path = req.file.path; 
+    console.log(req.file.path)
     const result = await cloudinary.uploader.upload(path, {
       resource_type: 'video',  // Use 'video' for audio files in Cloudinary
       folder: 'audio_files',
@@ -63,10 +69,10 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
   }
 });
 
-app.get("*",(req,res)=>
-    {
-        res.sendFile(path.join(dirname,"client","dist","index.html"))
-    })
+// app.get("*",(req,res)=>
+//     {
+//         res.sendFile(path.join(dirname,"client","dist","index.html"))
+//     })
 
 app.listen(PORT, () => {
     

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import AudioPlayer from './components/AudioPlayer'
+import UploadAudio from './components/UploadAudio'
 
 function App() {
   const [count, setCount] = useState()
@@ -21,7 +20,9 @@ function App() {
   }, [])
   return (
     <>
+    <h1>hello world</h1>
 
+<UploadAudio />
     {
       url && <AudioPlayer url={url} />
     }
@@ -40,4 +41,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
