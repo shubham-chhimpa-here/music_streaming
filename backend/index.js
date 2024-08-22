@@ -13,7 +13,7 @@ const PORT = 8080;
 require('dotenv').config() 
 
 app.use(express.json())
-// app.use(express.static(path.join(dirname,"/client/dist")))
+app.use(express.static(path.join(dirname,"/client/dist")))
 app.use(cors())
 
 
@@ -69,10 +69,10 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
   }
 });
 
-// app.get("*",(req,res)=>
-//     {
-//         res.sendFile(path.join(dirname,"client","dist","index.html"))
-//     })
+app.get("*",(req,res)=>
+    {
+        res.sendFile(path.join(dirname,"client","dist","index.html"))
+    })
 
 app.listen(PORT, () => {
     
