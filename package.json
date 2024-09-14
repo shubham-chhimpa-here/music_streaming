@@ -1,7 +1,7 @@
 {
   "name": "music_streaming",
   "version": "1.0.0",
-  "description": "",
+  "description": "Music player where user can upload and play songs",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon backend/index.js",
@@ -9,7 +9,11 @@
     "build": "npm install && npm install --prefix client && npm run build --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "music",
+    "streaming",
+    "player"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
