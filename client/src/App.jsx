@@ -30,7 +30,7 @@ function App() {
       {
         count?.map((item, index) => {
           return <div key={index}>
-            <div onClick={() => setUrl(item.url)}> {item._id}</div>
+            <div onClick={() => setUrl(item.url)}>{index + 1}-- {item._id}</div>
           </div>
         })
       }
