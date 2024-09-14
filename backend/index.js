@@ -69,13 +69,16 @@ app.post('/upload', upload.single('audio'), async (req, res) => {
       folder: 'audio_files',
     });
 
-    console.log(result)
+    // console.log(result)
 
     // Delete the file after uploading to Cloudinary
     fs.unlinkSync(path);
 
     const newAudio = new Audio({ url: result.secure_url });
     await newAudio.save();
+
+    // Invalidate cache
+    cache.audios = null;
 
     res.status(200).json({ msg: 'audio saved', audio: newAudio });
   } catch (error) {
