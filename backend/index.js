@@ -6,7 +6,8 @@ const { connection } = require('./db');
 const Audio = require('./models/Audio');
 const cloudinary = require('cloudinary').v2;
 const path = require('path');
-const cors = require('cors')
+const cors = require('cors');
+const { trackRouter } = require('./routes/track.router.js');
 
 const dirname = path.resolve();
 const PORT = 8080;
@@ -29,6 +30,10 @@ cloudinary.config({
 app.get('/', (req, res) => {
   res.send('hello world')
 })
+
+
+app.use('/image', trackRouter)
+
 
 app.get('/audios', async (req, res) => {
   try {
