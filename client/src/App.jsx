@@ -11,7 +11,6 @@ function App() {
     fetch(url)
       .then(res => res.json())
       .then(res => {
-        console.log(res)
         setCount(res.x)
       })
   }
